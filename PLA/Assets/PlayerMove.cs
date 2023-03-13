@@ -50,7 +50,7 @@ public class PlayerMove : MonoBehaviour
                 
                 break;
             case 2 :
-                speed = 20;
+                speed = 15;
                 
 
                 break;

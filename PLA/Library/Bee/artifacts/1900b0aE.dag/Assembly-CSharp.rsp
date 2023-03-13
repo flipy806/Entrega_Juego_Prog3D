@@ -350,6 +350,7 @@
 -r:"Library/Bee/artifacts/1900b0aE.dag/UnityEngine.UI.ref.dll"
 "Assets/Moving.cs"
 "Assets/PlayerMove.cs"
+"Assets/scripts 1/EnemigoW.cs"
 "Assets/Scripts/Bateria.cs"
 "Assets/Scripts/BatteryBar.cs"
 "Assets/Scripts/LifeBar.cs"
