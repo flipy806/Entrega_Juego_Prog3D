@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.16857639, g: 0.19973814, b: 0.23261662, a: 1}
+  m_IndirectSpecularColor: {r: 0.16857621, g: 0.19973789, b: 0.23261616, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -451,7 +451,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 0a7df02d26fc3d140b5168a7a0915dfc, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.29500002
+      value: -0.295
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 0a7df02d26fc3d140b5168a7a0915dfc, type: 3}
       propertyPath: m_LocalPosition.z
@@ -983,7 +983,7 @@ MonoBehaviour:
   Pla: {fileID: 574947324}
 --- !u!95 &963194230
 Animator:
-  serializedVersion: 5
+  serializedVersion: 4
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -1000,7 +1000,7 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &969174496
 GameObject:
   m_ObjectHideFlags: 0
@@ -1645,7 +1645,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f231c4fb786f3946a6b90b886c48677, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_SendPointerHoverToParent: 1
   m_HorizontalAxis: Horizontal
   m_VerticalAxis: Vertical
   m_SubmitButton: Submit

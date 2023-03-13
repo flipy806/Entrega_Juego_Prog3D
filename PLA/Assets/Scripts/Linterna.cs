@@ -11,11 +11,13 @@ public class Linterna : MonoBehaviour
     public float LowBat = 0;
     public float MaxBat = 100;
     private Coroutine MenosBateria;
+    
    // public BatteryBar Pila;
 
     // Update is called once per frame
     public void Start() {
         Bateria = MaxBat;
+       
     }
     void Update()
     {
@@ -26,24 +28,47 @@ public class Linterna : MonoBehaviour
     }
 
     public void TurnOn () {
-         if(Input.GetButtonDown("FlashLight")){
-            if(IsOn == false && FailSafe == false){
-                FailSafe = true;
-                Light.SetActive(true);
-                IsOn = true;
-                StartCoroutine(Failsafe());
-                MenosBateria = StartCoroutine(LessBat());
-                
+
+        if (Bateria > LowBat)
+        {
+            if (Input.GetButtonDown("FlashLight") && Bateria >= LowBat)
+            {
+                if (IsOn == false && FailSafe == false)
+                {
+                    FailSafe = true;
+                    Light.SetActive(true);
+                    IsOn = true;
+                    StartCoroutine(Failsafe());
+                    MenosBateria = StartCoroutine(LessBat());
+
+                }
+                if (IsOn == true && FailSafe == false)
+                {
+                    FailSafe = true;
+                    Light.SetActive(false);
+                    IsOn = false;
+                    StartCoroutine(Failsafe());
+                    StopCoroutine(MenosBateria);
+                }
+
+
             }
-            if(IsOn == true && FailSafe == false){
-                FailSafe = true;
-                Light.SetActive(false);
-                IsOn = false;
-                StartCoroutine(Failsafe());
-                StopCoroutine(MenosBateria);
+            else if (Input.GetButtonDown("FlashLight") && Bateria <= LowBat)
+            {
+
+                Debug.Log("No battery");
+
             }
         }
+        else if (Bateria == LowBat)
+        {
+            IsOn = false;
+            Light.SetActive(false);
+        }
     }
+        
+        
+    
 
    public void Recharge () {
        if(Bateria < MaxBat){
@@ -66,7 +91,7 @@ public class Linterna : MonoBehaviour
     IEnumerator LessBat(){
         while(true) {
             yield return new WaitForSeconds(3.5f);
-            Bateria -= 2;
+            Bateria -= 10;
             
         }
     }
