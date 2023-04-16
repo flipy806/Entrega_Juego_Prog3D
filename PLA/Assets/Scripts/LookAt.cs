@@ -14,7 +14,6 @@ public class LookAt : MonoBehaviour
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
-        Cam = gameObject.GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -34,8 +33,9 @@ public class LookAt : MonoBehaviour
         xRotacion -= mouseY;
         xRotacion = Mathf.Clamp(xRotacion, -90, 90);
 
-        transform.localRotation = Quaternion.Euler(xRotacion, 0, 0);
+        transform.localRotation = Quaternion.Euler(xRotacion, 0, 0) * PlayerBody.rotation;
 
 
     }
 }
+

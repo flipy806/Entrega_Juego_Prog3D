@@ -31,7 +31,7 @@ public class Linterna : MonoBehaviour
 
         if (Bateria > LowBat)
         {
-            if (Input.GetButtonDown("FlashLight") && Bateria >= LowBat)
+            if (SimpleInput.GetButtonDown("FlashLight") && Bateria >= LowBat)
             {
                 if (IsOn == false && FailSafe == false)
                 {

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerMove : MonoBehaviour
 {
@@ -9,9 +10,14 @@ public class PlayerMove : MonoBehaviour
     public Vector3 velocity;
     public float speed = 12;
     public float Lifes;
+    public float Stamina;
     public float LowLifes = 0;
     public float MaxLifes = 3;
-    
+    public float MaxStam = 100f;
+    public float MinStam = 0f;
+    public float ReStam = 10f;
+    public float LoseStam = 20f;
+    public Slider Slid;
 
 
     public Transform groundCheck;
@@ -25,6 +31,9 @@ public class PlayerMove : MonoBehaviour
      void Start() {
         estado = 1;
         Lifes = MaxLifes;
+        Stamina = MaxStam;
+        BarraStamina();
+
         //Cam = gameObject.GetComponent<Animator>();
 
     }
@@ -34,24 +43,26 @@ public class PlayerMove : MonoBehaviour
     {
         
         Lifes = Mathf.Clamp(Lifes, LowLifes, MaxLifes);
+        //Stamina = Mathf.Clamp(Stamina, MinStam, MaxStam);
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, floorMask);
         if (isGrounded && velocity.y < 0)
         {
             velocity.y = -2f; 
         }
 
-        if(Input.GetButtonDown("Jump") && isGrounded) {
+        if(SimpleInput.GetButtonDown("Jump") && isGrounded) {
             velocity.y = Mathf.Sqrt(2 * -2 * Gravedad);
         }
 
         switch (estado) {
             case 1 :
                 speed = 12;
+                GainStamina(ReStam);
                 
                 break;
             case 2 :
                 speed = 15;
-                
+                NoStamina(LoseStam);
 
                 break;
             default :
@@ -59,14 +70,15 @@ public class PlayerMove : MonoBehaviour
                 break;
         }
 
-        if(Input.GetKeyDown(KeyCode.LeftShift)){
+        if(SimpleInput.GetButtonDown("Sprint")){
+            
             estado = 2;
-        } else if(Input.GetKeyUp(KeyCode.LeftShift)){
+        } else if(SimpleInput.GetButtonUp("Sprint")){
             estado = 1;
         }
 
-        float x = Input.GetAxis("Horizontal");
-        float z = Input.GetAxis("Vertical");
+        float x = SimpleInput.GetAxis("Horizontal");
+        float z = SimpleInput.GetAxis("Vertical");
 
         Vector3 move = transform.right * x + transform.forward * z;
         cc.Move(move*speed*Time.deltaTime);
@@ -94,7 +106,21 @@ public class PlayerMove : MonoBehaviour
         }
     }
 
-     
+    public void NoStamina(float Cant) {
+        Stamina = Mathf.Clamp(Stamina - Cant, MinStam, MaxStam);
+        BarraStamina();
+       
+    }
+    public void GainStamina (float Cant) {
+         
+        Stamina = Mathf.Clamp(Stamina + Cant, MinStam, MaxStam);
+        BarraStamina();
+
+    }
+
+    public void BarraStamina() {
+        Slid.value = Stamina / MaxStam;
+    }
     
 }
     
