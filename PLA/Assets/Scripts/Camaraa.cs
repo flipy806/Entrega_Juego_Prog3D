@@ -4,23 +4,25 @@ using UnityEngine;
 
 public class Camaraa : MonoBehaviour
 {
-   public float Sensibility = 100;
+    #region Publicas
+    public float Sensibility = 100;
     public Transform PlayerBody;
     public Transform CamPlace;
-    private Transform Came;
     public float xRotacion;
     public float rotY;
     public Animator Cam;
     public PlayerMove Pla;
-    
+    #endregion
+
+    #region Privadas
+    private Transform Came;
+    #endregion
 
     void Start()
     {
         //Cursor.lockState = CursorLockMode.Locked;
         Came = Camera.main.transform;
     }
-
-    // Update is called once per frame
     void Update()
     {
         if(Pla.estado == 1) {

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.16857639, g: 0.19973814, b: 0.23261662, a: 1}
+  m_IndirectSpecularColor: {r: 0.16857621, g: 0.19973789, b: 0.23261616, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -859,6 +859,7 @@ GameObject:
   - component: {fileID: 574947322}
   - component: {fileID: 574947324}
   - component: {fileID: 574947325}
+  - component: {fileID: 574947326}
   m_Layer: 0
   m_Name: Body
   m_TagString: Player
@@ -946,24 +947,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cc: {fileID: 363083871}
-  Gravedad: -9.81
   velocity: {x: 0, y: 0, z: 0}
-  speed: 5
+  Slid: {fileID: 1384185992}
+  groundCheck: {fileID: 1299173506}
+  floorMask:
+    serializedVersion: 2
+    m_Bits: 8
   Lifes: 3
-  Stamina: 0
   LowLifes: 0
   MaxLifes: 5
+  estado: 0
+  Pasos: {fileID: 574947326}
+  Gravedad: -9.81
+  speed: 5
   MaxStam: 100
   MinStam: 0
   ReStam: 10
   LoseStam: 20
-  Slid: {fileID: 1384185992}
-  groundCheck: {fileID: 1299173506}
   groundDistance: 0.4
-  floorMask:
-    serializedVersion: 2
-    m_Bits: 8
-  estado: 0
+  Stamina: 0
 --- !u!136 &574947325
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -978,6 +980,102 @@ CapsuleCollider:
   m_Height: 2.0971637
   m_Direction: 1
   m_Center: {x: 0.11085372, y: -0.004565623, z: 0}
+--- !u!82 &574947326
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 574947320}
+  m_Enabled: 0
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 9d3c5d4a3be01154c99c677709697f49, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1001 &653751334
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2012,9 +2110,9 @@ MonoBehaviour:
   m_HandleRect: {fileID: 0}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 100
-  m_WholeNumbers: 1
-  m_Value: 100
+  m_MaxValue: 1
+  m_WholeNumbers: 0
+  m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
