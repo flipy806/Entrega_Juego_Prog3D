@@ -27,8 +27,10 @@ public class Camaraa : MonoBehaviour
     {
         if(Pla.estado == 1) {
             Cam.SetBool("Runnin",false);
+
         } else if(Pla.estado == 2) {
             Cam.SetBool("Runnin",true);
+
         }
 
         float mouseX = SimpleInput.GetAxis("Mouse X")/* * Sensibility * Time.deltaTime*/;

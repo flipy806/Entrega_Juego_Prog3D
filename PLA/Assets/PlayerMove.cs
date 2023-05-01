@@ -15,7 +15,10 @@ public class PlayerMove : MonoBehaviour
     public float LowLifes = 0;
     public float MaxLifes = 3;
     public float estado;
+    public bool IsMoving;
     public AudioSource Pasos;
+    public AudioClip walkClip;
+    public AudioClip runClip;
     #endregion
 
     #region Variables_Privadas
@@ -32,7 +35,7 @@ public class PlayerMove : MonoBehaviour
 
     void Start() {
 
-        estado = 1;
+       
         Lifes = MaxLifes;
         Stamina = MaxStam;
         BarraStamina();
@@ -46,6 +49,7 @@ public class PlayerMove : MonoBehaviour
         
         //Maquina de estado
         switch (estado) {
+
             case 1 :
                 speed = 9;
                 GainStamina(ReStam);
@@ -59,8 +63,7 @@ public class PlayerMove : MonoBehaviour
             default :
                 
                 break;
-        }
-        
+        } 
 
         Ouch();
         Movement();
@@ -79,9 +82,16 @@ public class PlayerMove : MonoBehaviour
 
         velocity.y += Gravedad * Time.deltaTime;
         cc.Move(velocity * Time.deltaTime);
+        
+         if (move.magnitude > 0.1f && !Pasos.isPlaying) {
+            Pasos.Play();
+        } else if (move.magnitude < 0.1f && Pasos.isPlaying) {
+            Pasos.Stop();
+        }
+
     }
 
-    //Función de Salto
+    //Funciï¿½n de Salto
     public void Jumping()
     {
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, floorMask);
@@ -103,21 +113,25 @@ public class PlayerMove : MonoBehaviour
         if (SimpleInput.GetButtonDown("Sprint"))
         {
             estado = 2;
+             Pasos.clip = runClip;
+             Pasos.Play();
         }
         else if (SimpleInput.GetButtonUp("Sprint"))
         {
             estado = 1;
+            Pasos.clip = walkClip;
+            Pasos.Play();
         }
     }
 
-    //activa la funcion de recibir daño
+    //activa la funcion de recibir daï¿½o
     public void  Ouch() {
         if(Input.GetKeyDown(KeyCode.N)) {
             TakeDamage();
         }
     }
 
-    // funcion de recibir daño
+    // funcion de recibir daï¿½o
     public void TakeDamage() {
         Lifes -= 1;
 
@@ -129,7 +143,11 @@ public class PlayerMove : MonoBehaviour
     //Activa la perdida de Stamina
     public void NoStamina(float Cant) {
         Stamina = Mathf.Clamp(Stamina - Cant * Time.deltaTime, MinStam, MaxStam);
-        if (Stamina <= 0) { estado = 1; };
+        if (Stamina <= 0) { 
+            estado = 1;
+            Pasos.clip = runClip;
+            Pasos.Stop();  
+        }
         BarraStamina();
        
     }

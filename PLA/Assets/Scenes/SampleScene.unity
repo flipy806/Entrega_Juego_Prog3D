@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.16857621, g: 0.19973789, b: 0.23261616, a: 1}
+  m_IndirectSpecularColor: {r: 0.16857639, g: 0.19973814, b: 0.23261662, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -957,7 +957,10 @@ MonoBehaviour:
   LowLifes: 0
   MaxLifes: 5
   estado: 0
+  IsMoving: 0
   Pasos: {fileID: 574947326}
+  walkClip: {fileID: 8300000, guid: 9d3c5d4a3be01154c99c677709697f49, type: 3}
+  runClip: {fileID: 8300000, guid: b677d30a531f62849b5e3e7625636853, type: 3}
   Gravedad: -9.81
   speed: 5
   MaxStam: 100
@@ -987,7 +990,7 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 574947320}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 9d3c5d4a3be01154c99c677709697f49, type: 3}
